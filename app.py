@@ -1,12 +1,12 @@
 import sqlite3
-from flask import Flask, render_template, abort, request, url_for
-# from db import get_db_connection
+from flask import Flask, render_template, abort, request, url_for, redirect
+from db import get_db_connection
 
 app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
-        return render_template('index.html')
+        return render_template('base.html')
 
 @app.route('/home', methods=['GET'])
 def home():
@@ -60,15 +60,15 @@ def edit_one_post(id):
         return render_template('post/edit.html', post=post)
 
 
-@app.route('/post/delete/<str:post_id>', methods=['POST'])
+@app.route('/post/delete/<post_id>', methods=['POST'])
 def delete_one_post(post_id):
     conn = get_db_connection()
     conn.execute('DELETE FROM posts WHERE id = ?', (post_id))
     conn.commit()
     conn.close()
 
-    return redirect(url_for('get_all_post')
+    return redirect(url_for('get_all_post'))
 
 if __name__ == '__main__':
-    app.run(debug=True, port=80, host=)
+    app.run(debug=True, port=80, host="localhost")
 ########################################################################## END BLOQUE 2
