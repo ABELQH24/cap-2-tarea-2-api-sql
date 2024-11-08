@@ -29,5 +29,5 @@ python app.py
 2. Prácticamente todo el archivo app.py contiene errores; las plantillas, en su mayoría, están correctas, pero es necesario o pertinente hacer modificaciones lo puedes hacer.
 3. Faltó importar correctamente la función desde el archivo db.py.
 4. Crea un enlace en base.html para visualizar el favicon.ico en la aplicación; es necesario mover el archivo a la carpeta adecuada.
-5. (Opcional) Agrega validación para el título; si no se llena, activa un mensaje de alerta, impidiendo el submit. 
+5. (Opcional) Agrega validación para el título; si no se llena, activa un mensaje de alerta, impidiendo el submit.
 

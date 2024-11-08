@@ -4,20 +4,30 @@
 
 {% block content %}
 <h1>Crear un nuevo Post</h1>
-<form method="post">
+<form method="post" onsubmit="return validarFormulario()">
     <div class="form-group">
         <label for="title">Title</label>
         <input type="text" id="title" name="title"
-               placeholder="Post title" class="form-control"
+               placeholder="ingrese nuevo título" class="form-control"
                value="{{ request.form.get('title', '') }}">
     </div>
     <div class="form-group">
         <label for="content">Content</label>
         <textarea id="content" name="content"
-                  placeholder="Post content" class="form-control">{{ request.form.get('content', '') }}</textarea>
+                  placeholder="Ingrese nuevo content" class="form-control">{{ request.form.get('content', '') }}</textarea>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </form>
+<script>
+    function validarFormulario() {
+        var titulo = document.getElementById("title").value.trim();
+        if (titulo === "") {
+            alert("Por favor, ingresa un título.");
+            return false;  // Evita el envío del formulario si el título está vacío.
+        }
+        return true;  // Permite el envío del formulario si el título no está vacío.
+    }
+</script>
 {% endblock %}

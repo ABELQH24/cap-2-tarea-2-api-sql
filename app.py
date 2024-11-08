@@ -32,16 +32,16 @@ def get_one_post(post_id):
     conn.close()
     return render_template('post/post.html', post=post)
 
-@app.route('/post/create', methods=['POST'])
+@app.route('/post/create', methods=['GET','POST'])
 def create_one_post():
     if request.method == 'POST':
         title = request.form['title']
-        contend = request.form['contend']
+        content = request.form['content']
         conn = get_db_connection()
-        conn.execute('INSERT INTO posts (title, content) VALUES (?, !)', (title, contend))
+        conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)', (title, content))
         conn.commit()
         conn.close()
-        return redirect(url_for('/post'))
+        return redirect(url_for('get_all_post'))
 
     return render_template('post/create.html')
 

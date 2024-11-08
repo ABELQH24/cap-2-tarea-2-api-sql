@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
-{% block title %}Edit Post post['id']{% endblock %}
+{% block title %}Edit Post {{ post['id'] }}{% endblock %}
 
 {% block content %}
 <h1>Editar el Post {{ post['id'] }}</h1>
-<form method="post">
+<a href="{{url_for('get_all_post')}}" class = "btn btn-secondary btn-sm " >Volver</a>
+<form method="post" onsubmit="return validarFormulario()">
     <div class="form-group">
         <label for="title">Titulo</label>
         <input type="text" id="title" name="title"
@@ -20,4 +21,15 @@
         <button type="submit" class="btn btn-primary">Actualizar</button>
     </div>
 </form>
+
+<script>
+    function validarFormulario() {
+        var titulo = document.getElementById("title").value.trim();
+        if (titulo === "") {
+            alert("Por favor, ingresa un título.");
+            return false;  // Evita el envío del formulario si el título está vacío.
+        }
+        return true;  // Permite el envío del formulario si el título no está vacío.
+    }
+</script>
 {% endblock %}
